@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Reservation</title>
+    <style>
+        * {
+            text-decoration: none;
+        }
+        .navbar {
+            background: white;
+            font-family: Calibri;
+            padding-right: 15px;
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo a {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 40px;
+            font-weight: 600;
+            color: rgb(8, 78, 2);
+        }
+        .logo img {
+            width: 30px;
+            height: auto;
+            margin-right: 10px;
+        }
+        button {
+            background-color: rgb(49, 80, 3);
+            margin-left: 10px;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .reservation-form {
+            margin-top: 20px;
+        }
+        #reservation-form input[type="text"] {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        #reservation-message {
+            display: none;
+            color: green;
+            margin-top: 10px;
+        }
+        .reservation-error {
+            display: none;
+            color: red;
+            margin-top: 10px;
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+        .pagination a {
+            padding: 8px;
+            text-decoration: none;
+            color: black;
+            border: 1px solid #ddd;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        /* Added background color */
+        body {
+            background-color: rgb(93, 164, 93);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo">
+                <img src="c:\Users\mmoha\Downloads\cute-green-dinosaur-cartoon-on-white-background-free-vector.png" alt="Logo">
+                <a href="#">Dino</a>
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Sign Up</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Equipment</a></li>
+            </ul>
+        </div>
+    </nav>   
+
+    <div class="reservation-form">
+        <h2>Equipment Reservation</h2>
+        <form id="reservation-form">
+            <label for="device-name">Device Name:</label><br>
+            <input type="text" id="device-name" name="device-name"><br>
+            <label for="device-type">Device Type:</label><br>
+            <input type="text" id="device-type" name="device-type"><br>
+            <label for="device-serial">Device Serial:</label><br>
+            <input type="text" id="device-serial" name="device-serial"><br><br>
+            <input type="button" value="Reserve" id="reserve-btn">
+        </form>
+        <p id="reservation-message" style="display: none; color: green;">Product successfully reserved</p>
+        <!-- Error messages -->
+        <p id="reservation-error" style="display: none; color: red;"></p>
+    </div>
+
+    <table id="device-list">
+        <thead>
+            <tr>
+                <th>Device Name</th>
+                <th>Device Type</th>
+                <th>Device Serial</th>
+                <th>Status</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+
+    <div class="pagination">
+       
+    </div>
+
+    <script>
+        const devices = [
+        { name: "Gigabyte Aero15 1070 (E-N5110-PC-A1)", type: "Laptop", serial: "GHSBC0211A000", quantity: 1, status: "Available" },
+            { name: "Gigabyte Aero15-X9 2070 (E-N5110-PC-A3)", type: "Laptop", serial: "SN19040J001539", quantity: 3 ,status: "Onloan" },
+            { name: "Gigabyte Aero15-X9 2070 (E-N5110-PC-A6)", type: "Laptop", serial: "SN19040J001547",quantity: 3 , status: "Repairing" },
+            { name: "Gigabyte Aero15-X9 2070 (E-N5110-PC-A5)", type: "Laptop", serial: "SN19040J001542",quantity: 1 , status: "Decommissioned" },
+            { name: "Gigabyte Aero15-X9 2070 (E-N5110-PC-A4)", type: "Laptop", serial: "SN19040J001548", quantity: 6 ,status: "Available" },
+            { name: "Google Pixel 2 G011A", type: "Mobile Device", serial: "FA79MA05608",quantity: 4 , status: "Available" },
+            { name: "Samsung Galaxy S6 SM-G920F", type: "Mobile Device", serial: "R58HB63GNCV",quantity: 1 , status: "Onloan" },
+            { name: "iPad Air Gen3", type: "Mobile Device", serial: "F9FYNNQULMPD",quantity: 1 , status: "Available" },
+            { name: "iPad Pro Gen6", type: "Mobile Device", serial: "QGJF42P99KMac",quantity: 1 , status: "Repairing" },
+            { name: "Mini M2 A2816", type: "Non-Portable PC", serial: "MV634YGNWF",quantity: 4 , status: "Available" },
+            { name: "Gigabyte Aorus15X 4070", type: "Laptop", serial: "SN23080J000369",quantity: 7 , status: "Available" },
+            { name: "Oculus Quest 1 Standalone Headset", type: "Standalone Headset", serial: "1PAVR2C0D29193",quantity: 7 , status: "Available" },
+            { name: "Oculus Quest 1 Standalone Headset", type: "Standalone Headset", serial: "1PAVR2C0CN9193",quantity: 3 , status: "Repairing" },
+            { name: "Oculus Quest 1 Standalone Headset", type: "Standalone Headset", serial: "1PAVR2C0CU9194",quantity: 1 , status: "Available" },
+            { name: "Pico 4 Standalone Headset", type: "Standalone Headset", serial: "PA82E0MGG9070251G",quantity: 1 , status: "Available" },
+            { name: "Pico 4 Standalone Headset", type: "Standalone Headset", serial: "PA82E0MGG9080239G",quantity: 5 , status: "Onloan" },
+            { name: "Pico 4 Enterprise Standalone Headset", type: "Standalone Headset", serial: "PA8E50MGH1110185D",quantity: 1 , status: "Available" },
+            { name: "Oculus Quest 2 Standalone Headset", type: "Standalone Headset", serial: "1WMVR4M06Q1491",quantity: 6 , status: "Repairing" },
+            { name: "Oculus Quest 2 Standalone Headset", type: "Standalone Headset", serial: "1WMVR4M2S61491",quantity: 5 , status: "Available" },
+            { name: "Oculus Quest 2 Standalone Headset", type: "Standalone Headset", serial: "1WMVR4M0XX1491",quantity: 1 , status:"Decommissioned" },
+            { name: "Vive Focus 3 Standalone Headset", type: "Standalone Headset", serial: "FA21L2Z00366",quantity: 1 , status: "Onloan"},
+            { name: "Vive Focus 3 Standalone Headset", type: "Standalone Headset", serial: "FA21L2Z00354",quantity: 2 , status: "Available" },
+            { name: "Vive Focus 3 Standalone Headset", type: "Standalone Headset", serial: "FA21L2Z00364",quantity: 1 , status: "Repairing" },
+            { name: "Vive Focus 3 Standalone Headset", type: "Standalone Headset", serial: "FA21L2Z00336",quantity: 1 , status: "Available" },
+            { name: "Vive Focus 3 Standalone Headset", type: "Standalone Headset", serial: "FA21L2Z00365",quantity: 2 , status: "Available" },
+            { name: "Hololens 1 Standalone Headset", type: "Standalone Headset", serial: "133765056",quantity: 1 , status: "Available" },
+            { name: "Hololens 2 Standalone Headset", type: "Standalone Headset", serial: "16261594656",quantity: 1 , status: "Repairing" },
+            { name: "Raspberry Pi 4 (BCM2711C0 Variant)", type: "Non-Portable PC", serial: "100000002e9cd67",quantity: 1 , status: "Decommissioned" },
+            { name: "Mac Mini Intel A1993", type: "Non-Portable PC", serial: "C07YT27FJYW0",quantity: 1 , status: "Available" }
+        ];
+
+        // Function to generate device list
+        function generateDeviceList(devices, page) {
+    const deviceListElement = document.querySelector('#device-list tbody');
+    deviceListElement.innerHTML = ''; // Clear previous content
+    const itemsPerPage = 8;
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, devices.length);
+    for (let i = startIndex; i < endIndex; i++) {
+        const tr = document.createElement('tr');
+        const deviceData = [devices[i].name, devices[i].type, devices[i].serial, devices[i].status, devices[i].quantity];
+        // Change the order of data insertion
+        deviceData.forEach(data => {
+            const td = document.createElement('td');
+            td.textContent = data;
+            tr.appendChild(td);
+        });
+        deviceListElement.appendChild(tr);
+    }
+}
+
+         function generatePagination(devices) {
+            const paginationElement = document.querySelector('.pagination');
+            paginationElement.innerHTML = ''; // Clear previous content
+            const itemsPerPage = 8;
+            const pageCount = Math.ceil(devices.length / itemsPerPage);
+            for (let i = 1; i <= pageCount; i++) {
+                const link = document.createElement('a');
+                link.textContent = i;
+                link.href = '#';
+                link.addEventListener('click', function() {
+                    generateDeviceList(devices, i);
+                    document.querySelectorAll('.pagination a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                });
+                if (i === 1) {
+                    link.classList.add('active');
+                }
+                paginationElement.appendChild(link);
+            }
+        }
+
+        document.getElementById('reserve-btn').addEventListener('click', function() {
+    // Hide previous messages
+    document.getElementById('reservation-message').style.display = 'none';
+    document.getElementById('reservation-error').style.display = 'none';
+
+    var deviceName = document.getElementById('device-name').value;
+    var deviceType = document.getElementById('device-type').value;
+    var deviceSerial = document.getElementById('device-serial').value;
+    const selectedDeviceIndex = devices.findIndex(device => device.name === deviceName && device.type === deviceType && device.serial === deviceSerial);
+    
+    if (selectedDeviceIndex !== -1) {
+        const selectedDevice = devices[selectedDeviceIndex];
+        if (selectedDevice.status === "Available") {
+            // Decrease the quantity of the selected device
+            devices[selectedDeviceIndex].quantity--;
+            // Update the table
+            generateDeviceList(devices, 1);
+            // Show success message
+            document.getElementById('reservation-message').style.display = 'block';
+        } else if (selectedDevice.status === "Onloan") {
+            document.getElementById('reservation-error').style.display = 'block';
+            document.getElementById('reservation-error').textContent = "Can't reserve product. Product is on loan.";
+        } else if (selectedDevice.status === "Repairing") {
+            document.getElementById('reservation-error').style.display = 'block';
+            document.getElementById('reservation-error').textContent = "Can't reserve product. Product is being repaired.";
+        } else if (selectedDevice.status === "Decommissioned") {
+            document.getElementById('reservation-error').style.display = 'block';
+            document.getElementById('reservation-error').textContent = "Can't reserve product. Product is decommissioned.";
+        }
+    } else {
+        document.getElementById('reservation-error').style.display = 'block';
+        document.getElementById('reservation-error').textContent = "Device not found or invalid input.";
+    }
+});
+
+// Initial rendering
+        generateDeviceList(devices, 1);
+        generatePagination(devices);
+    </script>
+</body>
+</html>
