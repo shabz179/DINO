@@ -1,0 +1,1061 @@
+{% load static  %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipment Page</title>
+<style>
+    /* Basic reset for margin and padding */
+    
+
+
+    *{
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Roboto' , sans-serif;
+     }
+
+
+    .navdiv {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: right;
+        background-color: white;
+        padding: 10px; 
+    }
+    
+
+    .logo {
+        display: flex; 
+        align-items: center; 
+        transition: transform 0.3s ease; 
+    }
+    .logo img {
+        height: 70px;
+        background-color: #333;
+
+    }
+
+    .logo a {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 40px;
+        font-weight: 600;
+        color: rgb(8, 78, 2);
+    }
+
+    ul.near {
+        list-style-type: none; 
+        padding: 0;
+    }
+    
+    ul.near li {
+        display: inline; 
+        margin-right: 20px; 
+        transition: transform 0.3s ease; 
+    }
+    
+    ul.near li a {
+        color: #333; 
+        text-decoration: none; 
+        transition: color 0.3s ease; 
+    }
+    
+    ul.near li a:hover {
+        text-decoration: underline; 
+        color: #07ff5a; 
+        transition: color 0.3s ease;
+    }
+
+   .logo:hover {
+        transform: scale(1.1);
+    }
+
+    /* Style for the container */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Style for the filter section */
+    .filter-section {
+        margin-bottom: 20px;
+    }
+
+    /* Style for the sort by select */
+    select {
+        padding: 8px;
+        font-size: 16px;
+    }
+    body {
+    background-color: rgb(93, 164, 93);
+    }
+     
+    /* Style for the sort by select */
+    select, input[type="text"] {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    /* Style for the equipment items */
+    .equipment-item {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    /* Style for the equipment item headings */
+    .equipment-item h2 {
+        margin-bottom: 5px;
+    }
+
+    /* Style for the equipment item descriptions */
+    .equipment-item p {
+        margin-bottom: 10px;
+    } 
+    #additemform{
+        max-width: 800px;
+        margin-right: 40px;
+        padding: 20px;
+        
+
+    }
+</style>
+</head>
+<body>
+    <!--This is the code for the Navbar--> 
+    <nav class = "navbar">
+        <div class = "navdiv">
+            <div class = "logo">
+                <img src="{% static '/images/Dino.jpg' %}">
+                <a href="#">Dino</a>
+            </div>
+           
+        
+        <ul class="near">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Login</a></li>
+
+
+         </ul>
+        
+        </div>
+    </nav>
+
+<!-- Header -->
+<header>
+    <h1>Equipment Page</h1>
+</header>
+
+
+<div class="container">
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <label for="sort-by">Sort By:</label>
+        <select id="sort-by">
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+        </select>
+    </div>
+    <!-- This is the code for the add items input -->
+        <form id="addItemForm">
+            <input type="text" id="addItemInput" placeholder="Enter item">
+            <button type="button" onclick="addItem()">Add Item</button>
+          </form>
+    <div>
+        <!-- Code for Search bar -->
+        <label for="search">Search:</label>
+        <input type="text" id="search" placeholder="Search...">
+    </div>
+    <!-- This is the code for the equipment list -->
+    <div class="equipment-item">
+        <h2>Laptop w/ 2070 GPU</h2>
+        <p>PC/Laptop</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-05-20</p>
+        <p>Location = Other</p>
+        <p>Status = On loan</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Laptop w/ 2070</h2>
+        <p>PC/Laptop</p>
+        <p>Quantity = 3</p>
+        <p>Audit = 2023-03-24</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = Repairing</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Valve Index</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 3</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = Available</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Vive Pro Eye</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Base Station 2</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 6</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>PC w/ 1080</h2>
+        <p>PC/Laptop</p>
+        <p>Quantity = 4</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>PC w/ 1060</h2>
+        <p>PC/Laptop</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Windows AIO PC</h2>
+        <p>PC/Laptop</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = Decommissioned</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Mac Mini (Intel)</h2>
+        <p>PC/Laptop</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = Repairing</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>HP Omen Ultrawide</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 4</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Monitor 16:9</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Keyboard</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 7</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Mouse</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 7</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Samsung smart TV 55 Inch</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 3</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Movable TVs</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Clevertouch Screen</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Desk</h2>
+        <p>Furniture</p>
+        <p>Quantity = 5</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Lectern</h2>
+        <p>Furniture</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Chair</h2>
+        <p>Furniture</p>
+        <p>Quantity = 6</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Chair w/ Armrest</h2>
+        <p>Furniture</p>
+        <p>Quantity = 5</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Stool</h2>
+        <p>Furniture</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Table</h2>
+        <p>Furniture</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Chair w/o backrest</h2>
+        <p>Furniture</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Leap motion Mount</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>VRGo Egg Chair</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Generic Tripod</h2>
+        <p>Tripod</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Manfroto Tripod</h2>
+        <p>Tripod</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Green screen</h2>
+        <p>Other</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Linx Vision Gaming Tablet</h2>
+        <p>PC/Laptop</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Insta 360 Pro</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-09-22</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Insta 360 Pro 2</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-09-22</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Samsung Gear 360 Camera</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Insta 360 Pro Battery</h2>
+        <p>Power/Cable</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Insta 360 Pro Charger x 1</h2>
+        <p>Power/Cable</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Structure sensor</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Leap Motion</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Leap Motion</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-05-20</p>
+        <p>Location = Other</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Laptop w/ 1070</h2>
+        <p>PC/Laptop</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-05-20</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Pico 4</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2023-09-18</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Pico 4 Enterprise</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2023-09-18</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Oculus Quest w/ Controllers</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 3</p>
+        <p>Audit = 2022-09-22</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Hololens 1</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-09-22</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Hololens 2</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-09-22</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Vive Pro Controller Pair</h2>
+        <p>VR Controller</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Valve Knuckles Controller Pair</h2>
+        <p>VR Controller</p>
+        <p>Quantity = 3</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Emotiv EEG</h2>
+        <p>Other</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Neewer 480 LED Lights</h2>
+        <p>Other</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>BeBox Router</h2>
+        <p>Other</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Generic Tripod</h2>
+        <p>Tripod</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>GearVR Headset</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>GearVR Controller</h2>
+        <p>VR Controller</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>IPad Air Gen3 2019</h2>
+        <p>Phones/Tablets</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Anker 10 port USB charger</h2>
+        <p>Power/Cable</p>
+        <p>Quantity = 3</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Anker Power Bank 10000MAH</h2>
+        <p>Power/Cable</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>HTC Power Bank 5700MAH</h2>
+        <p>Power/Cable</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Vive Wireless Adapter</h2>
+        <p>Other</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Vive Trackers & Dongles</h2>
+        <p>VR Controller</p>
+        <p>Quantity = 4</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Samsung Galaxy S6</h2>
+        <p>Phones/Tablets</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Google Pixel 2</h2>
+        <p>Phones/Tablets</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Xbox One Controller</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 5</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Medium Wooden Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Xbox One Dongle</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 5</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Medium Wooden Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Xbox 360 Controller</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Medium Wooden Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Kinect 1</h2>
+        <p>Camera/Sensors</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Medium Wooden Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Keyboard</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 5</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Medium Wooden Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Mouse</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 5</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Medium Wooden Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>OSVR Dev Kit</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Yost Labs PrioVR</h2>
+        <p>Other</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Medium Wooden Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Wacom Intuos Small</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2023-02-24</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Wacom Intuos</h2>
+        <p>PC Peripherals</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2023-04-04</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Oculus Rift w/ Controller Pair</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 1</p>
+        <p>Audit = 2022-09-22</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Oculus Quest 2 w/ Controller Pair</h2>
+        <p>VR Headset</p>
+        <p>Quantity = 2</p>
+        <p>Audit = 2022-09-22</p>
+        <p>Location = XRLab Blue Cabinet Large</p>
+        <p>Status = -</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>USB Type-C to Type-C cable</h2>
+        <p>Power/Cable</p>
+        <p>Quantity = 3</p>
+        <p>Audit = 2022-04-14</p>
+        <p>Location = XRLab Blue Cabinet</p>
+        <p>Status = -</p>
+    </div>
+    <div class="equipment-item">
+        <h2>Gigabyte Aero15 1070 (E-N5110-PC-A1)</h2>
+        <p>Laptop</p>
+        <p>GHSBC0211A0002</p>
+        <p>I7-7700HQ</p>
+        <p>GTX 1070</p>
+        <p>16GB</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Gigabyte Aero15-X9 2070 (E-N5110-PC-A3)</h2>
+        <p>Laptop</p>
+        <p>SN19040J001539</p>
+        <p>I7-8750H</p>
+        <p>RTX 2070</p>
+        <p>32GB</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Gigabyte Aero15-X9 2070 (E-N5110-PC-A6)</h2>
+        <p>Laptop</p>
+        <p>SN19040J001547</p>
+        <p>I7-8750H</p>
+        <p>RTX 2070</p>
+        <p>32GB</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Gigabyte Aero15-X9 2070 (E-N5110-PC-A5)</h2>
+        <p>Laptop</p>
+        <p>SN19040J001542</p>
+        <p>I7-8750H</p>
+        <p>RTX 2070</p>
+        <p>32GB</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Gigabyte Aero15-X9 2070 (E-N5110-PC-A4)</h2>
+        <p>Laptop</p>
+        <p>SN19040J001548</p>
+        <p>I7-8750H</p>
+        <p>RTX 2070</p>
+        <p>32GB</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Google Pixel 2 G011A</h2>
+        <p>Mobile Device</p>
+        <p>FA79MA05608</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Samsung Galaxy S6 SM-G920F</h2>
+        <p>Mobile Device</p>
+        <p>R58HB63GNCV</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>iPad Air Gen3</h2>
+        <p>Mobile Device</p>
+        <p>F9FYNNQULMPD</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>iPad Pro Gen6</h2>
+        <p>Mobile Device</p>
+        <p>QGJF42P99K</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Mac Mini M2 A2816</h2>
+        <p>Non-Portable PC</p>
+        <p>MV634YGNWF</p>
+        <p>M2 10C</p>
+        <p>N/A</p>
+        <p>16GB</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Gigabyte Aorus15X 4070</h2>
+        <p>Laptop</p>
+        <p>SN23080J000369</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Oculus Quest 1</h2>
+        <p>Standalone Headset</p>
+        <p>1PAVR2C0D29193</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Pico 4</h2>
+        <p>Standalone Headset</p>
+        <p>PA82E0MGG9070251G</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Pico 4</h2>
+        <p>Standalone Headset</p>
+        <p>PA82E0MGG9080239G</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Pico 4 Enterprise</h2>
+        <p>Standalone Headset</p>
+        <p>PA8E50MGH1110185D</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Oculus Quest 2</h2>
+        <p>Standalone Headset</p>
+        <p>1WMVR4M06Q1491</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Vive Focus 3</h2>
+        <p>Standalone Headset</p>
+        <p>FA21L2Z00366</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Hololens 1</h2>
+        <p>Standalone Headset</p>
+        <p>133765056</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Hololens 2</h2>
+        <p>Standalone Headset</p>
+        <p>16261594656</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Raspberry Pi 4 (BCM2711C0 Variant)</h2>
+        <p>Non-Portable PC</p>
+        <p>100000002e9cd67</p>
+        <p>BCM2711C0</p>
+        <p>N/A</p>
+        <p>4GB</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h2>Mac Mini Intel A1993</h2>
+        <p>Non-Portable PC</p>
+        <p>C07YT27FJYW0</p>
+        <p>6-Core Intel Core I5</p>
+        <p>N/A</p>
+        <p>16GB</p>
+    </div>
+    <script>
+     // JavaScript for sorting equipment items
+     document.getElementById('sort-by').addEventListener('change', function() {
+        var sortBy = this.value;
+        var equipmentItems = document.querySelectorAll('.equipment-item');
+        var sortedItems = Array.from(equipmentItems);
+
+        // Sort items based on selected criteria
+        sortedItems.sort(function(a, b) {
+            var aValue = a.getAttribute('data-' + sortBy);
+            var bValue = b.getAttribute('data-' + sortBy);
+            return aValue.localeCompare(bValue);
+        });
+
+        // Reorder items in the list
+        var equipmentContainer = document.querySelector('.equipment-items');
+        equipmentContainer.innerHTML = '';
+        sortedItems.forEach(function(item) {
+            equipmentContainer.appendChild(item);
+        });
+    });
+    
+         // JavaScript for searching equipment items
+    document.getElementById('search').addEventListener('input', function() {
+        var searchText = this.value.toLowerCase();
+        var equipmentItems = document.querySelectorAll('.equipment-item');
+
+        // Filter items based on search text
+        equipmentItems.forEach(function(item) {
+            var itemName = item.querySelector('h2').textContent.toLowerCase();
+            var itemDescription = item.querySelector('p').textContent.toLowerCase();
+            if (itemName.includes(searchText) || itemDescription.includes(searchText)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+    function addItem() {
+        var input = document.getElementById("addItemInput");
+        var item = input.value;
+  
+  if (item.trim() !== "") {
+        var itemList = document.getElementById("itemList");
+        var li = document.createElement("li");
+        li.textContent = item;
+    
+    // Add a button to update and remove item
+    var updateBtn = document.createElement("button");
+    updateBtn.textContent = "Update";
+    updateBtn.onclick = function() {
+      var updatedItem = prompt("Enter updated item", item);
+      if (updatedItem !== null && updatedItem.trim() !== "") {
+        li.textContent = updatedItem;
+      }
+    };
+    var removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.onclick = function() {
+      li.remove();
+    };
+    
+    li.appendChild(updateBtn);
+    li.appendChild(removeBtn);
+    
+    itemList.appendChild(li);
+    
+    // Clear input field
+    input.value = "";
+  } else {
+    alert("Please enter a valid item.");
+  }
+}
+// Add a button to remove item
+var removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.onclick = function() {
+      li.remove();
+    };
+    
+    li.appendChild(removeBtn);
+    
+    itemList.appendChild(li);
+</script>
+</body>
+</html> 
