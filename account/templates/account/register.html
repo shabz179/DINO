@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+   
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+</head>
+<body>
+    <nav class ="navbar">
+        <div class = "navdiv">
+        <div class ="logo">
+            <img src= "{% static '/Images/Trex.png' %}">
+            <a href="">Dino</a>
+        </div>
+    
+        <ul class="near">
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="">Sign Up</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+<h2>User Sign Up</h2>
+<form method="post">
+    {% csrf_token %}
+
+    {% for field in registration_form %}
+    <div class="container">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input type="{{ field.field.widget.input_type }}" id="{{ field.id_for_label }}" name="{{ field.html_name }}" {% if field.field.required %} required {% endif %}>
+
+        {% if field.help_text %}
+        <small style="color: grey;">{{ field.help_text }}</small>
+        {% endif %}
+
+        {% for error in field.errors %}
+        <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <button type="submit">Register</button>
+</form>
+</form>
+</form>
+</body>
+</html>
+
+

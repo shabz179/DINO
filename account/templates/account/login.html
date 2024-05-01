@@ -1,0 +1,68 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+   
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+    <nav class ="navbar">
+        <div class = "navdiv">
+        <div class ="logo">
+            <img src= "{% static '/Images/Trex.png' %}">
+            <a href="">Dino</a>
+        </div>
+    
+        <ul class="near">
+            <li><a href="">Login</a></li>
+            <li><a href="{% url 'register' %}">Sign Up</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="flex-container">
+    <div class="form-container">
+    <form method="post" id="login-form"> 
+        <h2>Login to your account</h2>
+        {% csrf_token %}
+        {% for field in login_form %}
+
+        <div class="input-container">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+            <small style="color: grey;">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        {% for field in login_form %}
+            {% for error in field.errors %}
+        <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+
+        {% if login_form.non_field_errors %}
+    <div style="color: red;">
+    <p>
+        {{login_form.non_field_errors}}</p>
+    </p>
+</div>
+{% endif %}
+
+    <button type="submit">Log In</button>
+    </form>
+
+</div>
+</div>
+</body>
+
+
+</html>
+

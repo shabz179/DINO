@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+   
+    <link rel="stylesheet" href="{% static 'about.css' %}">
+</head>
+<body>
+    <nav class ="navbar">
+        <div class = "navdiv">
+        <div class ="logo">
+            <img src= "{% static '/Images/Trex.png' %}">
+            <a href="">Dino</a>
+        </div>
+    
+        <ul class="near">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Equipment Page</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+
+        </ul>
+    </div>
+</nav>
+
+       <div class="heading">
+                <h1>About Us</h1> 
+                <p> Elevate Your Tech Experience with Our Premier Electronics Collection<p>
+       </div>
+       <div class="container">
+        <section class="about">
+            <div class="about-image">
+                <img src= "{% static '/Images/electronics.png' %}">
+            </div>
+            <div class="about-content">
+             <h2>Discover the Difference</h2>
+             <p> your ultimate destination for top-quality electronics. 
+                Whether you're seeking the latest smartphones, sleek laptops, 
+                or high-performance accessories, our curated collection has it all. 
+                Take a moment to explore our shop and uncover a world of innovation at your fingertips.
+                 From must-have gadgets to essential tech essentials, 
+                 we're here to elevate your electronic experience. 
+                 Start browsing now and find your perfect match</p>
+             <a href="" class="read-more"> Browse our shop</a>
+            </div>
+        </section>
+     
+       </div>
+</body>
+</html>
