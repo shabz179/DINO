@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Reports</title>
+    <link rel="stylesheet" href="{% static 'generate_report.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo">
+                <img src="{% static 'dinosaur.jpeg' %}" alt="logo"  height="70">
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">contact us</a></li>
+                <li><a href="#">Login</a></li>  
+            </ul>
+        </div>
+    </nav>
+    <header class="navbar">
+        <div class="navbar-brand">Report Generator</div>
+    </header>
+    <main>
+        <section class="content">
+            <h1>Generate Reports</h1>
+            <div class="report-options">
+                <div class="report-type">
+                    <h2>Select Report Type:</h2>
+                    <ul>
+                        <li><input type="checkbox" id="inventory" onclick="toggleCheckbox(this)"><label for="inventory">Inventory Status Report</label></li>
+                        <li><input type="checkbox" id="usage" onclick="toggleCheckbox(this)"><label for="usage">Equipment Usage History</label></li>
+                        <li><input type="checkbox" id="overdue" onclick="toggleCheckbox(this)"><label for="overdue">Overdue Equipment</label></li>
+                        <li><input type="checkbox" id="activity" onclick="toggleCheckbox(this)"><label for="activity">User Activity</label></li>
+                    </ul>
+                </div>
+                <div class="report-options__filters">
+                    <h2>Filters:</h2>
+                    <div class="filter">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date">
+                    </div>
+                    <div class="filter">
+                        <label for="end-date">End Date:</label>
+                        <input type="date" id="end-date">
+                    </div>
+                    <div class="filter">
+                        <label for="equipment-type">Equipment Type:</label>
+                        <select id="equipment-type">
+                            <option value="laptop">Laptop</option>
+                            <option value="headset">Headset</option>
+                            <option value="camera">Camera/Sensors</option>
+                            <option value="pc-peripherals">PC Peripherals</option>
+                            <option value="vr-headset">VR Headset</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="users">Users:</label>
+                        <select id="users">
+                            <option value="user1">User 1</option>
+                            <option value="user2">User 2</option>
+                            <option value="user3">User 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="generate-report" onclick="generateReport()">Generate Report</button>
+                    <button class="view-reports" onclick="openGeneratedReports()">View Generated Reports</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Report Generator. All rights reserved.</p>
+    </footer>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGeneratedReports()">&times;</span>
+            <div class="modal-header">
+                <h2>Generated Reports</h2>
+            </div>
+            <div class="modal-body" id="report-list">
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
+
